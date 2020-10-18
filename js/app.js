@@ -37,13 +37,13 @@ Products.all = []; // array of objects
 
 function Products(pName) {
   this.productsName = pName;
-  this.imagePath = `/assets/${pName}`;
+  this.imagePath = `assets/${pName}`;
   this.views = 0;
   this.clicks = 0;
   Products.all.push(this);
 }
 
-//(3_2) instantiate objects for all the goats one shot
+//(3_2) instantiate objects for all the products one shot
 for (var i = 0; i < names.length; i++) {
   new Products(names[i]);
 }

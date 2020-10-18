@@ -1,11 +1,11 @@
 body {
-    background-image: url(/assets/cc0623c07e135609973a7aa7c592f571.jpg);
+    background-image: url(assets/cc0623c07e135609973a7aa7c592f571.jpg);
   }
   header {
     text-align: left;
     border: 5px solid #163A38;
     margin-bottom: 40px;
-    background-image:url('/assets/0d1e5da01cda1da4a009c94729cadf75.jpg');
+    background-image:url('assets/0d1e5da01cda1da4a009c94729cadf75.jpg');
 }
 #logo {
     float:right;
