@@ -1,11 +1,14 @@
 body {
-    background-image: url(assets/cc0623c07e135609973a7aa7c592f571.jpg);
+    background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm21-smoke-bb-5_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c8347a73d6427dda5d03bd1100c39354');
+    background-repeat: no-repeat;
+    background-attachment:fixed ;
+    background-size: cover;
   }
   header {
     text-align: left;
     border: 5px solid #163A38;
     margin-bottom: 40px;
-    background-image:url('assets/0d1e5da01cda1da4a009c94729cadf75.jpg');
+    background-color: sienna;
 }
 #logo {
     float:right;
