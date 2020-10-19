@@ -39,7 +39,7 @@ Products.all = []; // array of objects
 
 function Products(pName) {
   this.productsName = pName;
-  this.imagePath = `/assets/${pName}`;
+  this.imagePath = `assets/${pName}`;
   this.views = 0;
   this.clicks = 0;
   Products.all.push(this);
