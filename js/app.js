@@ -35,6 +35,11 @@ console.log(centerImage);
 console.log(rightImage);
 
 
+namesArray = [];
+// clicksArray = [];
+// viewsArray = [];
+// clickTotalArray = [];
+
 Products.all = []; // array of objects
 
 function Products(pName) {
@@ -43,6 +48,9 @@ function Products(pName) {
   this.views = 0;
   this.clicks = 0;
   Products.all.push(this);
+  namesArray.push(this.productsName);
+  // clicksArray.push(this.clicks);
+  // viewsArray.push(this.views);
 }
 
 //(3_2) instantiate objects for all the products one shot
@@ -54,8 +62,12 @@ console.log(Products.all);
 
 //(4) render 3 random images
 
+// for (var m = 0; m < Products.all.length; m++) {
+var firstArray = [];
+var secondArray = [];
 var leftProduct, rightProduct, centerProduct;
 function render() {
+  // do {
   do {
     leftProduct = Products.all[randomNumber(0, Products.all.length - 1)];
     centerProduct = Products.all[randomNumber(0, Products.all.length - 1)];
@@ -78,7 +90,17 @@ function render() {
     centerImage.setAttribute('title', centerProduct.productsName);
   }
   while (centerProduct === rightProduct || centerProduct === leftProduct || leftProduct === rightProduct);
+  //}
+  //while (leftProduct[m] === leftProduct[m - 1] || leftProduct[m] === rightProduct[m - 1] || leftProduct[m] === centerProduct[m - 1] || rightProduct[m] === rightProduct[m - 1] || rightProduct[m] === centerProduct[m - 1] || rightProduct[m] === leftProduct[m - 1] || centerProduct[m] === leftProduct[m - 1] || centerProduct[m] === centerProduct[m - 1] || centerProduct[m] === rightProduct[m - 1]);
+  secondArray.push(leftProduct.productsName, centerProduct.productsName, rightProduct.productsName);
+  console.log(secondArray);
+
+  if (firstArray[1] !== secondArray[1]&&firstArray[1] !== secondArray[2]&&firstArray[1] !== secondArray[3]&&firstArray[2] !== secondArray[1]&&firstArray[2] !== secondArray[2]&&firstArray[2] !== secondArray[3]&&firstArray[3] !== secondArray[1]&&firstArray[3] !== secondArray[2]&&firstArray[3] !== secondArray[3]) {
+    firstArray === secondArray;
+    console.log(firstArray);
+  }
 }
+
 render();
 
 
@@ -115,6 +137,7 @@ function handleClickonProducts(event) {
     // renderSummary();
     document.getElementById('BUTTON').addEventListener('click', renderSummary);
     console.log(totalClicks);
+    renderChart();
   }
 
 }
@@ -132,68 +155,64 @@ function renderSummary() {
 }
 
 
+
 //helper functions
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 
-//CHART
+var vote = [];
+var click = [];
 
-var ctx = document.getElementById('myChart').getContext('2d');
-var myChart = new Chart(ctx, {
-  type: 'bar',
-  data: {
-    labels: names,
-    datasets: [{
-      label: '# of clicks',
-      data: [12, 19, 3, 5, 2, 3],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 3
-    },
-    {
-      label: '# of Views',
-      data: [8, 10, 13, 15, 10, 5],
-      backgroundColor: [
-        'rgba(255, 99, 132, 0.2)',
-        'rgba(54, 162, 235, 0.2)',
-        'rgba(255, 206, 86, 0.2)',
-        'rgba(75, 192, 192, 0.2)',
-        'rgba(153, 102, 255, 0.2)',
-        'rgba(255, 159, 64, 0.2)'
-      ],
-      borderColor: [
-        'rgba(255, 99, 132, 1)',
-        'rgba(54, 162, 235, 1)',
-        'rgba(255, 206, 86, 1)',
-        'rgba(75, 192, 192, 1)',
-        'rgba(153, 102, 255, 1)',
-        'rgba(255, 159, 64, 1)'
-      ],
-      borderWidth: 3
-    }]
-  },
-  options: {
-    scales: {
-      yAxes: [{
-        ticks: {
-          beginAtZero: true
-        }
-      }]
+//CHART
+function renderChart() {
+  for (i = 0; i < Products.all.length; i++) {
+    // clicksArray[i] += Products.all[i].clicks;
+    // clicksArray.push(clicksArray);
+    vote.push(Products.all[i].views);
+    for (var j = 0; j < Products.all.length; j++) {
+
+      click.push(Products.all[j].clicks);
     }
+
+    var ctx = document.getElementById('myChart').getContext('2d');
+    var myChart = new Chart(ctx, {
+      type: 'bar',
+      data: {
+        labels: namesArray,
+        datasets: [{
+          label: '# of clicks',
+          data: click,
+          backgroundColor:
+            'rgba(255, 99, 132, 0.2)',
+
+          borderColor:
+            'rgba(255, 99, 132, 1)',
+
+          borderWidth: 3
+        },
+        {
+          label: '# of Views',
+          data: vote,
+          backgroundColor:
+            'rgba(255, 99, 132, 0.2)',
+
+          borderColor:
+            'rgba(255, 99, 132, 1)',
+
+          borderWidth: 3
+        }]
+      },
+      options: {
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }]
+        }
+      }
+    });
   }
-});
+}
+
