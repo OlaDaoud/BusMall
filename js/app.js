@@ -1,3 +1,10 @@
+//(1) get the images
+var leftImage = document.getElementById('leftImage');
+var centerImage = document.querySelector('#centerImage');
+var rightImage = document.querySelector('#rightImage');
+var imagesSection = document.querySelector('#imagesSection');
+imagesSection.addEventListener('click', handleClickonProducts);
+
 /* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 var names = [
@@ -24,24 +31,15 @@ var names = [
 ];
 // lenght= 20
 // 0 to 19
-
-//(1) get the images
-var leftImage = document.getElementById('leftImage');
-var centerImage = document.querySelector('#centerImage');
-var rightImage = document.querySelector('#rightImage');
-
 console.log(leftImage);
 console.log(centerImage);
 console.log(rightImage);
 
-
+var randomArray = [];
 namesArray = [];
-// clicksArray = [];
-// viewsArray = [];
-// clickTotalArray = [];
 
 Products.all = []; // array of objects
-
+// declare the constructor:
 function Products(pName) {
   this.productsName = pName;
   this.imagePath = `assets/${pName}`;
@@ -49,8 +47,6 @@ function Products(pName) {
   this.clicks = 0;
   Products.all.push(this);
   namesArray.push(this.productsName);
-  // clicksArray.push(this.clicks);
-  // viewsArray.push(this.views);
 }
 
 //(3_2) instantiate objects for all the products one shot
@@ -60,14 +56,12 @@ for (var i = 0; i < names.length; i++) {
 
 console.log(Products.all);
 
-//(4) render 3 random images
 
-// for (var m = 0; m < Products.all.length; m++) {
-var firstArray = [];
-var secondArray = [];
+//(4) render 3 random images
 var leftProduct, rightProduct, centerProduct;
+
 function render() {
-  // do {
+
   do {
     leftProduct = Products.all[randomNumber(0, Products.all.length - 1)];
     centerProduct = Products.all[randomNumber(0, Products.all.length - 1)];
@@ -75,7 +69,6 @@ function render() {
     console.log(leftProduct);
     console.log(centerProduct);
     console.log(rightProduct);
-
 
     leftImage.setAttribute('src', leftProduct.imagePath);
     leftImage.setAttribute('alt', leftProduct.productsName);
@@ -90,27 +83,29 @@ function render() {
     centerImage.setAttribute('title', centerProduct.productsName);
   }
   while (centerProduct === rightProduct || centerProduct === leftProduct || leftProduct === rightProduct);
-  //}
-  //while (leftProduct[m] === leftProduct[m - 1] || leftProduct[m] === rightProduct[m - 1] || leftProduct[m] === centerProduct[m - 1] || rightProduct[m] === rightProduct[m - 1] || rightProduct[m] === centerProduct[m - 1] || rightProduct[m] === leftProduct[m - 1] || centerProduct[m] === leftProduct[m - 1] || centerProduct[m] === centerProduct[m - 1] || centerProduct[m] === rightProduct[m - 1]);
-  secondArray.push(leftProduct.productsName, centerProduct.productsName, rightProduct.productsName);
-  console.log(secondArray);
+  console.log(leftProduct);
+  console.log(rightProduct);
+  console.log(centerProduct);
 
-  if (firstArray[1] !== secondArray[1]&&firstArray[1] !== secondArray[2]&&firstArray[1] !== secondArray[3]&&firstArray[2] !== secondArray[1]&&firstArray[2] !== secondArray[2]&&firstArray[2] !== secondArray[3]&&firstArray[3] !== secondArray[1]&&firstArray[3] !== secondArray[2]&&firstArray[3] !== secondArray[3]) {
-    firstArray === secondArray;
-    console.log(firstArray);
-  }
+  leftImage.setAttribute('src', leftProduct.imagePath);
+  leftImage.setAttribute('alt', leftProduct.productsName);
+  leftImage.setAttribute('title', leftProduct.productsName);
+
+  rightImage.setAttribute('src', rightProduct.imagePath);
+  rightImage.setAttribute('alt', rightProduct.productsName);
+  rightImage.setAttribute('title', rightProduct.productsName);
+
+  centerImage.setAttribute('src', centerProduct.imagePath);
+  centerImage.setAttribute('alt', centerProduct.productsName);
+  centerImage.setAttribute('title', centerProduct.productsName);
+
 }
-
 render();
-
 
 var totalClicks = 0;
 
-var imagesSection = document.querySelector('#imagesSection');
-imagesSection.addEventListener('click', handleClickonProducts);
-
 function handleClickonProducts(event) {
-
+// event.preventDefault();
   console.log(event.target.id);
 
   if (totalClicks < 25) {
@@ -133,6 +128,7 @@ function handleClickonProducts(event) {
       }
       render();
     }
+
   } else if (totalClicks === 25) {
     // renderSummary();
     document.getElementById('BUTTON').addEventListener('click', renderSummary);
@@ -142,6 +138,7 @@ function handleClickonProducts(event) {
 
 }
 
+// render the results after the last round
 // eslint-disable-next-line no-unused-vars
 function renderSummary() {
   imagesSection.removeEventListener('click', handleClickonProducts);
@@ -155,7 +152,6 @@ function renderSummary() {
 }
 
 
-
 //helper functions
 function randomNumber(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
@@ -167,8 +163,6 @@ var click = [];
 //CHART
 function renderChart() {
   for (i = 0; i < Products.all.length; i++) {
-    // clicksArray[i] += Products.all[i].clicks;
-    // clicksArray.push(clicksArray);
     vote.push(Products.all[i].views);
     for (var j = 0; j < Products.all.length; j++) {
 
@@ -215,4 +209,37 @@ function renderChart() {
     });
   }
 }
+
+
+function getImg() {
+  var imagesString = JSON.stringify(Images.all);
+  localStorage.setItem('Images', imagesString);
+}
+
+function secondTime() {
+
+  var ImagesString = localStorage.getItem('Images');
+  var ImagesARR = JSON.parse(ImagesString);
+  if (ImagesARR) {
+    Images.all = ImagesARR;
+  }
+}
+console.log(Images.all);
+secondTime();
+/// second function
+function getClicks() {
+  var clicksString = JSON.stringify(totalClicks);
+  localStorage.setItem('clicks', clicksString);
+}
+
+function clicksSecond() {
+  var clicksString = localStorage.getItem('clicks');
+  var ClicksA = JSON.parse(clicksString);
+  if (ClicksA) {
+    totalClicks = ClicksA;
+  }
+
+} console.log(totalClicks);
+clicksSecond();
+
 
