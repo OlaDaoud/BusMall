@@ -1,5 +1,5 @@
 body {
-    background-image: url('https://img.rawpixel.com/s3fs-private/rawpixel_images/website_content/rm21-smoke-bb-5_1.jpg?w=800&dpr=1&fit=default&crop=default&q=65&vib=3&con=3&usm=15&bg=F4F4F3&ixlib=js-2.2.1&s=c8347a73d6427dda5d03bd1100c39354');
+    background-image: url('https://www.onlygfx.com/wp-content/uploads/2015/12/simple-old-paper-1-transparent.jpg');
     background-repeat: no-repeat;
     background-attachment:fixed ;
     background-size: cover;
@@ -8,7 +8,7 @@ body {
     text-align: left;
     border: 5px solid #163A38;
     margin-bottom: 40px;
-    background-color: sienna;
+    background-image: url('https://www.onlygfx.com/wp-content/uploads/2015/12/simple-old-paper-1-transparent.jpg');
 }
 #logo {
     float:right;
@@ -40,7 +40,7 @@ h1 {
   }
   header nav ul li a {
     text-decoration: none;
-    color: orangered;
+    color: teal;
     font-size: 25px;
     font-weight: 100;
     font-family: 'Righteous', cursive;

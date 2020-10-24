@@ -178,10 +178,10 @@ function renderChart() {
           label: '# of clicks',
           data: click,
           backgroundColor:
-            'rgba(255, 99, 132, 0.2)',
+            'Charcoal',
 
           borderColor:
-            'rgba(255, 99, 132, 1)',
+            'Tan',
 
           borderWidth: 3
         },
@@ -189,10 +189,10 @@ function renderChart() {
           label: '# of Views',
           data: vote,
           backgroundColor:
-            'rgba(255, 99, 132, 0.2)',
+            'Tan',
 
           borderColor:
-            'rgba(255, 99, 132, 1)',
+            'Charcoal',
 
           borderWidth: 3
         }]
